@@ -9,4 +9,8 @@ class ProductController extends Controller
     public function seller_product_landing(){
         return view('products.products');
     }
+
+    public function seller_product_add(){
+        return view('products.addproducts')
+    }
 }
