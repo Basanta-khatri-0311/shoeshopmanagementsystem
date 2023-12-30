@@ -28,6 +28,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/product',[ProductController::class,'seller_product_landing' ])->name('product.index');
-Route::get('/product/addproduct',[ProductController::class,'seller_product_add' ])->name('product.add');
-Route::post('/product',[ProductController::class,'add_product' ])->name('product.add');
+Route::get('/product', [ProductController::class, 'seller_product_landing'])->name('product.index');
+Route::get('/product/addproduct ', [ProductController::class, 'seller_product_add'])->name('product.add');
+Route::post('/product', [ProductController::class, 'add_product'])->name('product.store');
