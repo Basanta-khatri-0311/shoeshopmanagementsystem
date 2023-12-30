@@ -31,3 +31,5 @@ Route::middleware([
 Route::get('/product', [ProductController::class, 'seller_product_landing'])->name('product.index');
 Route::get('/product/addproduct ', [ProductController::class, 'seller_product_add'])->name('product.add');
 Route::post('/product', [ProductController::class, 'add_product'])->name('product.store');
+Route::get('/product/{product}/edit', [ProductController::class, 'edit_products'])->name('product.edit');
+Route::put('/product/{product}/update', [ProductController::class, 'update_products'])->name('product.update');

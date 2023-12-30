@@ -17,6 +17,9 @@
         <th>Price</th>
         <th>Description</th>
         <th>Product Image</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Product Image</th>
       </tr>
       @foreach ($products as $product )
         <tr>
@@ -26,6 +29,9 @@
           <td>{{ $product->price }}</td>
           <td>{{ $product->description }}</td>
           <td><img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"></td>
+          <td>
+            <a href="{{ route('product.edit',['product'=> $product]) }}">Edit </a>
+          </td>
         </tr>
       @endforeach
     </table>
