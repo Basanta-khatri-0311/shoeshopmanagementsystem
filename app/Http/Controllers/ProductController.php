@@ -9,8 +9,8 @@ class ProductController extends Controller
 {
     public function seller_product_landing()
     {
-        $products=Product::all();
-        return view('products.products', ['products'=>$products]);
+        $products = Product::all();
+        return view('products.products', ['products' => $products]);
     }
 
     public function seller_product_add()
@@ -36,11 +36,13 @@ class ProductController extends Controller
 
     }
 
-    public function edit_products(Product $product){
-        return view('products.editproduct',['product'=> $product]);
+    public function edit_products(Product $product)
+    {
+        return view('products.editproduct', ['product' => $product]);
     }
 
-    public function update_products(Product $product, Request $request){
+    public function update_products(Product $product, Request $request)
+    {
         $data = $request->validate([
             'name' => 'required',
             'qty' => 'required|numeric',
@@ -49,11 +51,12 @@ class ProductController extends Controller
             'product_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $product ->update($data);
+        $product->update($data);
         return redirect(route('product.index'))->with('success', 'Product updated successfuly');
     }
 
-    public function delete_products(Product $product){
+    public function delete_products(Product $product)
+    {
         $product->delete();
         return redirect(route('product.index'))->with('success', 'Product deleted successfuly');
     }
