@@ -22,12 +22,12 @@
         @endif
     </div>
 
-    <form method="POST" action="{{ route('product.update',['product' =>$product]) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('product.update', ['product' => $product]) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div>
             <label>Product Name: </label>
-            <input type="text" name="name" placeholder="Name" value="{{ $product->name }}" >
+            <input type="text" name="name" placeholder="Name" value="{{ $product->name }}">
         </div>
 
         <div>
@@ -47,7 +47,8 @@
 
         <div>
             <label>Image: </label>
-            <input type="file" name="product_image" placeholder="product_image" value="{{ $product->product_image }}">
+            <input type="file" name="product_image" placeholder="product_image"
+                value="{{ $product->product_image }}">
         </div>
 
         <div>
