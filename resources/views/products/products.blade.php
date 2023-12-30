@@ -32,9 +32,19 @@
           <td>
             <a href="{{ route('product.edit',['product'=> $product]) }}">Edit </a>
           </td>
+          <td>
+            <form action="{{ route('product.delete',['product'=>$product ]) }}" method="POST">
+              @csrf 
+              @method('delete')
+              <input type="submit" value="Delete">
+            </form>
+          </td>
         </tr>
       @endforeach
     </table>
+  </div>
+  <div>
+    <a href="{{ route('product.add') }}">Add product</a>
   </div>
 </body>
 </html>
