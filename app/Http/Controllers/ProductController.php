@@ -11,6 +11,6 @@ class ProductController extends Controller
     }
 
     public function seller_product_add(){
-        return view('products.addproducts')
+        return view('products.addproducts');
     }
 }

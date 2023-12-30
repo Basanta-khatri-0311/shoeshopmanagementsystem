@@ -29,3 +29,4 @@ Route::middleware([
 });
 
 Route::get('/product',[ProductController::class,'seller_product_landing' ])->name('product.index');
+Route::get('/addproduct',[ProductController::class,'seller_product_add' ])->name('product.add');
