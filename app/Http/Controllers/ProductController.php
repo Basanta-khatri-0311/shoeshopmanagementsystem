@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function seller_product_landing()
     {
-        return view('products.products');
+        $products=Product::all();
+        return view('products.products', ['products'=>$products]);
     }
 
     public function seller_product_add()
