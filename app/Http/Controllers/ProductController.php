@@ -45,6 +45,10 @@ class ProductController extends Controller
     {
         return view('products.editproduct', ['product' => $product]);
     }
+    public function services()
+    {
+        return view('service');
+    }
 
     public function update_products(Product $product, Request $request)
     {
