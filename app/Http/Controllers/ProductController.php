@@ -53,7 +53,12 @@ class ProductController extends Controller
     {
         return view('aboutus');
     }
+    public function contact()
+    {
+        return view('contact');
+    }
 
+    
     public function update_products(Product $product, Request $request)
     {
         $data = $request->validate([

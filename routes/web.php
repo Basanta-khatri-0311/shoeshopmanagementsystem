@@ -33,6 +33,7 @@ Route::middleware([
 Route::get('/', function () { return view('welcome');});
 Route::get('/services', [ProductController::class, 'services'])->name('services.index');
 Route::get('/aboutus', [ProductController::class, 'aboutus'])->name('aboutus.index');
+Route::get('/contactus', [ProductController::class, 'contact'])->name('contact.index');
 
 
 
