@@ -22,7 +22,7 @@
             z-index: 10;
         }
         main {
-            margin-top: 64px; /* Adjust this value according to your nav bar height */
+            margin-top: 64px;
         }
     </style>
 </head>
