@@ -10,6 +10,37 @@
 </head>
 
 <body class="bg-#" style= "background-color:#fceadd  ;" font-sans">
+    {{-- <nav class="bg-dark text-white p-4">
+        <div class="flex justify-between items-center">
+            <a href="#" class="text-white font-bold text-lg">Shoes Mgmt</a>
+            <button type="button" class="text-white lg:hidden">
+                <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M3 18h18v-2H3v2zM3 13h18v-2H3v2zM3 6v2h18V6H3z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <div class="hidden lg:flex lg:items-center">
+                <ul class="flex ml-4 space-x-4">
+                    <li>
+                        <a href="#" class="text-white hover:text-gray-200">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white hover:text-gray-200">Shoes</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white hover:text-gray-200">Brands</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white hover:text-gray-200">Stores</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white hover:text-gray-200">Sales</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> --}}
+    
+
     <div class="container mx-auto p-4">
     <h1 class="text-3xl font-bold mb-4 text-center">Your products</h1>
     <div class="overflow-x-auto">
