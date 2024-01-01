@@ -49,6 +49,10 @@ class ProductController extends Controller
     {
         return view('service');
     }
+    public function aboutus()
+    {
+        return view('aboutus');
+    }
 
     public function update_products(Product $product, Request $request)
     {

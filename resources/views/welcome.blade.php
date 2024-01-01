@@ -34,7 +34,7 @@
             <ul class="flex justify-center space-x-6">
                 <li><a href="/" class="text-gray-700 hover:text-gray-900">Home</a></li>
                 <li><a href="{{ route('services.index') }}" class="text-gray-700 hover:text-gray-900">Service</a></li>
-                <li><a href="/about-us" class="text-gray-700 hover:text-gray-900">About Us</a></li>
+                <li><a href="{{ route('aboutus.index') }}" class="text-gray-700 hover:text-gray-900">About Us</a></li>
                 <li><a href="/contacts" class="text-gray-700 hover:text-gray-900">Contacts</a></li>
             </ul>
         </nav>
