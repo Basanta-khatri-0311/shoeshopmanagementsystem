@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function seller_product_landing()
-    {
-        $products = Product::all();
-        return view('products.products', ['products' => $products]);
-    }
     public function all_product_landing()
     {
         $products = Product::all();
         return view('products.allproducts', ['products' => $products]);
     }
-
+    
+    public function seller_product_landing()
+    {
+        $products = Product::all();
+        return view('products.products', ['products' => $products]);
+    }
     public function seller_product_add()
     {
         return view('products.addproducts');
