@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function all_product_landing()
-    {
-        $products = Product::all();
-        return view('products.allproducts', ['products' => $products]);
-    }
     
     public function seller_product_landing()
     {
@@ -47,20 +42,20 @@ class ProductController extends Controller
     }
     public function services()
     {
-        return view('service');
+        return view('home.service');
     }
     public function aboutus()
     {
-        return view('aboutus');
+        return view('home.aboutus');
     }
     public function contact()
     {
-        return view('contact');
+        return view('home.contact');
     }
-    public function userdashboard()
-    {
-        return view('userlanding');
-    }
+    // public function userdashboard()
+    // {
+    //     return view('user.userlanding');
+    // }
 
     
     public function update_products(Product $product, Request $request)

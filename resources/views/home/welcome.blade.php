@@ -73,7 +73,7 @@
     document.getElementById('getStartedButton').addEventListener('click', function(event) {
         event.preventDefault();
         @auth
-        window.location.href = "{{ url('/dashboard') }}"; // Redirect to dashboard if authenticated
+        window.location.href = "{{ url('/home') }}"; // Redirect to dashboard if authenticated
     @else
         window.location.href = "{{ route('login') }}"; // Redirect to login if not authenticated
     @endauth
