@@ -36,14 +36,7 @@
                         <input id="password" class="block mt-1 w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="password" name="password" required autocomplete="current-password" />
                     </div>
         
-                    <div class="mb-4">
-                        <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
-                        <select id="role" name="role" class="block mt-1 w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="customer">Customer</option>
-                            <option value="trader">Trader</option>
-                        </select>
-                    </div>
+
                     
                     <div class="block mt-4">
                         <label for="remember_me" class="flex items-center">

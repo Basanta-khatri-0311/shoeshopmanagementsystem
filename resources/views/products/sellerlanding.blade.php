@@ -16,30 +16,57 @@
         .product-card:hover {
             transform: translateY(-5px);
         }
+
+        /* Initially hide expanded description */
+        .text-gray-700.hidden {
+            display: none;
+        }
     </style>
 </head>
 <x-app-layout>
-</x-app-layout>
-<body class="bg-#" style= "background-color: #fceadd  ; font-sans">
-    <div class="container mx-auto p-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">Your Products</h1>
-            <a href='{{ route('product.index') }}' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Your Products</a>
-        </div>
-        <div class="grid grid-cols-1 gap-8">
-            @foreach ($products as $product)
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card flex">
-                    <div class="p-4 w-2/3">
-                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                        <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
-                        <p class="text-gray-700">{{ $product->description }}</p>
+
+    <body class="bg-#" style= "background-color: #fceadd  ; font-sans">
+        <div class="container mx-auto p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Your Products</h1>
+                <a href='{{ route('product.index') }}'
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Your Products</a>
+            </div>
+            <div class="flex flex-wrap justify-between">
+                @foreach ($products as $product)
+                    <div class="w-1/4 bg-white rounded-lg overflow-hidden shadow-lg product-card mb-4 mx-2">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                            <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                            <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
+                            <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                            <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                            <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                                {{ $product->description }}</p>
+                        </div>
+                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                            class="w-full h-auto object-cover">
                     </div>
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image" class="w-1/3 h-auto object-cover">
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
         </div>
-    </div>
-</body>
+    </body>
+</x-app-layout>
+
 
 </html>
+<script>
+    function toggleDescription(productId) {
+        var description = document.getElementById('description' + productId);
+        var fullDescription = document.getElementById('full-description' + productId);
+        var buttonText = description.classList.toggle('expanded') ? 'Read Less' : 'Read More';
+        description.textContent = description.classList.contains('expanded') ? fullDescription.textContent : str_limit(
+            fullDescription.textContent, 20);
+        description.nextElementSibling.textContent = buttonText;
+    }
+
+    function str_limit(string, limit) {
+        return string.trim().split(/\s+/).slice(0, limit).join(' ') + '...';
+    }
+</script>

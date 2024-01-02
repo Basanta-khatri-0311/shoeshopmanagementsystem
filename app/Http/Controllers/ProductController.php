@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -26,12 +27,15 @@ class ProductController extends Controller
             'description' => 'nullable',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $user_id = Auth::id();
+
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
         }
 
         $newproduct = Product::create($data);
-
+        $newproduct->user_id = $user_id;
         return redirect(route('product.index'));
 
     }

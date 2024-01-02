@@ -17,11 +17,12 @@ class HomeController extends Controller
                 return view('admin.adminlanding');
             }
             elseif($usertype=='trader'){
-                $products = Product::all();
+                $products = Product::where('user_id', Auth::id())->get();
                 return view('products.sellerlanding', ['products' => $products]);
             }
             elseif($usertype=='customer'){
-                return view('user.userlanding');
+                $allProducts = Product::all();
+                return view('user.userlanding', ['allProducts' => $allProducts]);
             }
             else{
                 return redirect()->back();

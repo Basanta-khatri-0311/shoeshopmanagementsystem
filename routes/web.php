@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::get('/contactus', [HomeController::class, 'contact'])->name('contact.inde
 
 /**Route for home page */
 Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
-
+//Route::get('/home',[UserController::class,'userDashboard'])->middleware('auth')->name('home');
 
 
 
