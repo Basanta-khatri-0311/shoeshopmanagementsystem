@@ -49,7 +49,7 @@
             </p>
             <div class="flex justify-center md:justify-start">
                 <a href="" class="bg-blue-500 text-white px-8 py-4 rounded-lg mr-4 hover:bg-blue-600" id="getStartedButton">Get Started</a>
-                <a href="/learn-more" class="bg-gray-700 text-white px-8 py-4 rounded-lg hover:bg-gray-800">Learn More</a>
+                <a href="#" class="bg-gray-700 text-white px-8 py-4 rounded-lg hover:bg-gray-800">Learn More</a>
             </div>
         </div>
         <div class="md:w-1/2 flex justify-center">

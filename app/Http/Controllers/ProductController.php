@@ -57,6 +57,10 @@ class ProductController extends Controller
     {
         return view('contact');
     }
+    public function userdashboard()
+    {
+        return view('userlanding');
+    }
 
     
     public function update_products(Product $product, Request $request)

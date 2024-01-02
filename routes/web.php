@@ -36,6 +36,9 @@ Route::get('/aboutus', [ProductController::class, 'aboutus'])->name('aboutus.ind
 Route::get('/contactus', [ProductController::class, 'contact'])->name('contact.index');
 
 
+/**all the routes for user/customer */
+Route::get('/userdashboard',[ProductController::class,'userdashboard'])->name('userdashboard.index');
+
 
 /**all the routes for products crud and displaying pages */
 Route::get('/allproducts', [ProductController::class, 'all_product_landing'])->name('allproduct.index');
