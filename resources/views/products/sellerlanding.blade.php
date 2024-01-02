@@ -18,7 +18,8 @@
         }
     </style>
 </head>
-
+<x-app-layout>
+</x-app-layout>
 <body class="bg-#" style= "background-color: #fceadd  ; font-sans">
     <div class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-8">

@@ -28,4 +28,16 @@ class HomeController extends Controller
             }
         }
     }
+    public function services()
+    {
+        return view('home.service');
+    }
+    public function aboutus()
+    {
+        return view('home.aboutus');
+    }
+    public function contact()
+    {
+        return view('home.contact');
+    }
 }

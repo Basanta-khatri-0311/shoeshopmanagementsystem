@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
+    /**for showing products in table along with edit and delete buttons */
     public function seller_product_landing()
     {
         $products = Product::all();
@@ -40,18 +40,7 @@ class ProductController extends Controller
     {
         return view('products.editproduct', ['product' => $product]);
     }
-    public function services()
-    {
-        return view('home.service');
-    }
-    public function aboutus()
-    {
-        return view('home.aboutus');
-    }
-    public function contact()
-    {
-        return view('home.contact');
-    }
+  
     // public function userdashboard()
     // {
     //     return view('user.userlanding');
