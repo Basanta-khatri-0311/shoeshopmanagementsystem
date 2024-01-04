@@ -8,8 +8,8 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
-<body class="class="bg-#" style= "background-color:#fceadd  ;" font-sans>
+@livewire('navigation-menu')
+<body style= "background-color:#fceadd;">
     <h1 class="text-3xl font-bold mb-4 text-center mt-8">Edit product</h1>
     <div class="mx-auto max-w-md">
         @if ($errors->any())

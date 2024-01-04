@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Product Display</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         .product-card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,36 +24,35 @@
         }
     </style>
 </head>
-<x-app-layout>
 
-    <body class="bg-#" style= "background-color: #fceadd  ; font-sans">
-        <div class="container mx-auto p-8">
-            <div class="flex justify-between items-center mb-8">
-                <h1 class="text-3xl font-bold">Your Products</h1>
-                <a href='{{ route('product.index') }}'
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Your Products</a>
-            </div>
-            <div class="flex flex-wrap justify-between">
-                @foreach ($products as $product)
-                    <div class="w-1/4 bg-white rounded-lg overflow-hidden shadow-lg product-card mb-4 mx-2">
-                        <div class="p-4">
-                            <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                            <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                            <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
-                            <p class="text-gray-700" id="description{{ $product->id }}"></p>
-                            <button onclick="toggleDescription({{ $product->id }})">Read More</button>
-                            <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
-                                {{ $product->description }}</p>
-                        </div>
-                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
-                            class="w-full h-auto object-cover">
-                    </div>
-                @endforeach
-            </div>
-
+@livewire('navigation-menu')
+<body class="bg-#" style= "background-color: #fceadd;">
+    <div class="container mx-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Your Products</h1>
+            <a href='{{ route('product.index') }}'
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Your Products</a>
         </div>
-    </body>
-</x-app-layout>
+        <div class="flex flex-wrap justify-between">
+            @foreach ($products as $product)
+                <div class="w-1/4 bg-white rounded-lg overflow-hidden shadow-lg product-card mb-4 mx-2">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                        <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
+                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                        <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                        <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                            {{ $product->description }}</p>
+                    </div>
+                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                        class="w-full h-auto object-cover">
+                </div>
+            @endforeach
+        </div>
+
+    </div>
+</body>
 
 
 </html>

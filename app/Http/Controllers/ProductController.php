@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
@@ -18,6 +19,12 @@ class ProductController extends Controller
     {
         return view('products.addproducts');
     }
+
+    public function orders()
+    {
+        return view('products.orders');
+    }
+
     public function add_product(Request $request)
     {
         $data = $request->validate([
@@ -44,13 +51,13 @@ class ProductController extends Controller
     {
         return view('products.editproduct', ['product' => $product]);
     }
-  
+
     // public function userdashboard()
     // {
     //     return view('user.userlanding');
     // }
 
-    
+
     public function update_products(Product $product, Request $request)
     {
         $data = $request->validate([

@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-
-<body class="bg-#" style="background-color:#fceadd; font-family: 'sans-serif';">
+@livewire('navigation-menu')
+<body class="bg-#" style="background-color:#fceadd;">
     <div class="container mx-auto p-4">
         <h1 class="text-3xl font-bold mb-4 text-center">Your products</h1>
         <div class="overflow-x-auto">
@@ -51,5 +51,4 @@
         <a href="{{ route('product.add') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add product</a>
     </div>
 </body>
-
 </html>
