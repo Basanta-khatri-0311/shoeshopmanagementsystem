@@ -35,7 +35,7 @@
                 <div class="p-4">
                     <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
                     <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                    <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
+                    <p class="text-gray-700 mb-2">Price: ${{ $product->price }}</p>
                     <p class="text-gray-700" id="description{{ $product->id }}"></p>
                     <button onclick="toggleDescription({{ $product->id }})">Read More</button>
                     <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">

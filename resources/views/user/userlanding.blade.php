@@ -35,6 +35,15 @@
             padding-top: 20px;
         }
 
+        .swiper-slide-image {
+            width: 100%;
+            height: 500px;
+            /* Adjust the height as needed */
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
         /* Product Card Styles */
         .product-card {
             background-color: #dfdada;
@@ -46,7 +55,6 @@
         }
 
         .product-card:hover {
-            background-color: #C7A069;
             transform: none;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
@@ -112,6 +120,11 @@
             /* Center content */
 
         }
+        .sort-font{
+            color: black;
+            font-size: 15px;
+            margin: 0 10px;
+        }
     </style>
 </head>
 
@@ -122,19 +135,23 @@
             <div class="swiper-wrapper">
                 <!-- Swiper slides -->
                 <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img class="swiper-slide-image"
+                        src="https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="Slide 1" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    <img class="swiper-slide-image"
+                        src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Slide 2" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/9252069/pexels-photo-9252069.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img class="swiper-slide-image"
+                        src="https://images.pexels.com/photos/9252069/pexels-photo-9252069.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="Slide 3" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img class="swiper-slide-image"
+                        src="https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="Slide 4" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
 
@@ -142,6 +159,14 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
+        <div class="col-md-12 mb-3">
+            <span class="font-weight-bold sort-font">Sort By: </span>
+            <a href="{{ route('home', ['sort' => '']) }}" class="sort-font">All</a>
+            <a href="{{ route('home', ['sort' => 'price_lo_hi']) }}" class="sort-font">Price - Low-High</a>
+            <a href="{{ route('home', ['sort' => 'price_hi_lo']) }}" class="sort-font">Price - High-Low</a>
+            <a href="{{ route('home', ['sort' => 'newest']) }}" class="sort-font">Newest</a>
+        </div>
+        
         <form action="" class="flex justify-end">
             <div class="flex items-center space-x-2">
                 <input type="search" name="search" id="" class="form-control" placeholder="search product">
@@ -162,18 +187,24 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
             <!-- Sample product card -->
             @foreach ($allProducts as $product)
-                <div class="product-card">
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image" class="w-20 h-20 object-cover">
-                    <h2 class="product-title">{{ $product->name }}</h2>
-                    <p class="product-description">{{ substr($product->description, 0, 100) }}...</p>
-                    <button onclick="togglePopup('{{ $product->id }}')">Read more</button>
-                    <div id="popup_{{ $product->id }}" class="popup-card">
-                        <div class="popup-content">
-                            {{ $product->description }}
-                            <button onclick="togglePopup('{{ $product->id }}')">Close</button>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                        <p class="text-gray-700 mb-2">Price: ${{ $product->price }}</p>
+                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                        <button onclick="togglePopup('{{ $product->id }}')">Read more</button>
+                        <div id="popup_{{ $product->id }}" class="popup-card">
+                            <div class="popup-content">
+                                {{ $product->description }}
+                                <button onclick="togglePopup('{{ $product->id }}')">Close</button>
+                            </div>
                         </div>
                     </div>
-                    <p class="product-price">${{ $product->price }}</p>
+                    <div class="aspect-w-8 aspect-h-6">
+                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                            class="object-cover">
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -202,7 +233,7 @@
             loop: true,
             effect: 'fade',
             autoplay: {
-                delay: 1000,
+                delay: 4000,
                 disableOnInteraction: false,
             },
         });

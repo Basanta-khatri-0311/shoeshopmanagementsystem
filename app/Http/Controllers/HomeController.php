@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Product;
 
 use Illuminate\Http\Request;
@@ -15,26 +16,39 @@ class HomeController extends Controller
             $usertype = Auth()->user()->role;
             if ($usertype == 'admin') {
                 return view('admin.adminlanding');
-            }
-            elseif($usertype=='trader'){
+            } elseif ($usertype == 'trader') {
                 $products = Product::where('user_id', Auth::id())->get();
                 return view('products.sellerlanding', ['products' => $products]);
-            }
-            elseif($usertype=='customer'){
-                $search= $request['search'] ?? "";
-
-                if($search != "")
-                {
-                   $allProducts=Product::where('name','Like','%'.$search.'%')->get();
+            } elseif ($usertype == 'customer') {
+                $query = Product::query();
+    
+                // Search functionality
+                $search = $request->input('search') ?? "";
+                if ($search != "") {
+                    $query->where('name', 'like', '%' . $search . '%');
                 }
-                else
-                {
-                    $allProducts = Product::all();
+    
+                // Sorting functionality
+                $sort = $request->input('sort');
+                switch ($sort) {
+                    case 'price_lo_hi':
+                        $query->orderBy('price');
+                        break;
+                    case 'price_hi_lo':
+                        $query->orderByDesc('price');
+                        break;
+                    case 'newest':
+                        $query->latest();
+                        break;
+                    default:
+                        // Default sorting if no valid option is provided
+                        $query->orderBy('created_at', 'desc');
                 }
-               
-                return view('user.userlanding', ['allProducts' => $allProducts,'search' => $search]);
-            }
-            else{
+    
+                $allProducts = $query->get();
+    
+                return view('user.userlanding', ['allProducts' => $allProducts, 'search' => $search]);
+            } else {
                 return redirect()->back();
             }
         }
