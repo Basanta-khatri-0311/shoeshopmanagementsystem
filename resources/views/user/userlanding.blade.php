@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+@livewire('navigation-menu')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +9,15 @@
     <title>Your Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
-        /* Mimic x-app-layout styles */
-        /* You may need to customize these styles further */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f5f5f5;
+            /* Change to your preferred background color */
+            color: #333;
+            /* Change text color for better contrast */
         }
 
         /* Define your custom styles */
@@ -22,14 +26,99 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+
+        /* Slider Styles */
+        .swiper-container {
+            width: 100%;
+            margin-bottom: 0;
+            /* Adjust the margin-bottom property */
+            padding-top: 20px;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            background-color: #dfdada;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            background-color: #C7A069;
+            transform: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            /* Adjust height as needed */
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #27ae60;
+            /* Change to your preferred price color */
+        }
+
+
+        .popup-card {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            /* Adjust maximum width as needed */
+            max-height: 80%;
+            /* Adjust maximum height as needed */
+            overflow-y: auto;
+            text-align: center;
+            /* Center content */
+
+        }
     </style>
 </head>
 
-@livewire('navigation-menu')
 <body>
 
     <div class="container mt-8">
-        <div class="swiper-container my-6" style="width: 130%;">
+        <div class="swiper-container" style="padding-top: 20px">
             <div class="swiper-wrapper">
                 <!-- Swiper slides -->
                 <div class="swiper-slide">
@@ -48,26 +137,45 @@
                     <img src="https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="Slide 4" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
+
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
+        <form action="" class="flex justify-end">
+            <div class="flex items-center space-x-2">
+                <input type="search" name="search" id="" class="form-control" placeholder="search product">
+                <button
+                    class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                    Search
+                </button>
+                <a href="{{ 'home' }}" class="inline-block">
+                    <button type="button"
+                        class="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400 focus:outline-none focus:shadow-outline-gray active:bg-gray-500">
+                        Reset
+                    </button>
+                </a>
+            </div>
+        </form>
 
         <!-- Display all products -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
             <!-- Sample product card -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                @foreach ($allProducts as $product)
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
-                            class="w-full h-40 object-cover mb-4">
-                        <h2 class="text-xl font-semibold">{{ $product->name }}</h2>
-                        <p class="text-gray-600 text-sm mb-2">{{ $product->description }}</p>
-                        <p class="text-gray-800 font-semibold">${{ $product->price }}</p>
+            @foreach ($allProducts as $product)
+                <div class="product-card">
+                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image" class="w-20 h-20 object-cover">
+                    <h2 class="product-title">{{ $product->name }}</h2>
+                    <p class="product-description">{{ substr($product->description, 0, 100) }}...</p>
+                    <button onclick="togglePopup('{{ $product->id }}')">Read more</button>
+                    <div id="popup_{{ $product->id }}" class="popup-card">
+                        <div class="popup-content">
+                            {{ $product->description }}
+                            <button onclick="togglePopup('{{ $product->id }}')">Close</button>
+                        </div>
                     </div>
-                @endforeach
-            </div>
-            <!-- Repeat this card structure in a loop for all products -->
+                    <p class="product-price">${{ $product->price }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -85,13 +193,39 @@
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
+
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                hide: false,
             },
             loop: true,
             effect: 'fade',
             autoplay: {
-                delay: 4000,
+                delay: 1000,
                 disableOnInteraction: false,
             },
+        });
+
+        function togglePopup(productId) {
+            const popup = document.getElementById('popup_' + productId);
+            popup.style.display = (popup.style.display === 'none') ? 'flex' : 'none';
+        }
+
+        function showPopup(productId) {
+            const popup = document.getElementById('popup_' + productId);
+            popup.style.display = 'flex';
+        }
+
+        function hidePopup(productId) {
+            const popup = document.getElementById('popup_' + productId);
+            popup.style.display = 'none';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const popups = document.querySelectorAll('.popup-card');
+            popups.forEach(function(popup) {
+                popup.style.display = 'none';
+            });
         });
     </script>
 </body>

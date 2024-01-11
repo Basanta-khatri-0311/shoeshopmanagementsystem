@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product Display</title>
+    <title>Products</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -26,34 +26,33 @@
 </head>
 
 @livewire('navigation-menu')
-<body class="bg-#" style= "background-color: #fceadd;">
-    <div class="container mx-auto p-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">Your Products</h1>
-            <a href='{{ route('product.index') }}'
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Your Products</a>
-        </div>
-        <div class="flex flex-wrap justify-between">
+<body class="bg-#" style="background-color: #fceadd; margin: 0;">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Your Products</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @foreach ($products as $product)
-                <div class="w-1/4 bg-white rounded-lg overflow-hidden shadow-lg product-card mb-4 mx-2">
-                    <div class="p-4">
-                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                        <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
-                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
-                        <button onclick="toggleDescription({{ $product->id }})">Read More</button>
-                        <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
-                            {{ $product->description }}</p>
-                    </div>
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
-                        class="w-full h-auto object-cover">
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                    <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                    <p class="text-gray-700 mb-2">Price: {{ $product->price }}</p>
+                    <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                    <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                    <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                        {{ $product->description }}</p>
                 </div>
+                <div class="aspect-w-8 aspect-h-6">
+                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image" class="object-cover">
+                </div>
+            </div>
             @endforeach
         </div>
-
     </div>
 </body>
 
+<footer class="bg-gray-900 text-white py-4 text-center custom-bg mt-20">
+    <p>&copy; 2022 FootFashion. All rights reserved.</p>
+</footer>
 
 </html>
 <script>

@@ -10,13 +10,23 @@
                     <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
+
+                    @if (Auth::user()->role==='customer')
+                    <x-nav-link href="{{ route('user.orderhistory') }}" :active="request()->routeIs('user.orderhistory')">
+                        {{ __('Order History') }}
+                    </x-nav-link>
+                    @endif
+                   
+
+
+                    @if (in_array(auth()->user()->role, ['trader', 'admin']))
                     <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                         {{ __('Manage Products') }}
                     </x-nav-link>
-                    @if (Auth::user()->role==='trader')
-                    <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
+
+                    {{-- <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
                         {{ __('Orders') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     @endif
                     <x-dropdown align="left-start" width="48">
                         <x-slot name="trigger">
@@ -68,11 +78,6 @@
                     </x-dropdown>
                     
                 </div>
-                {{-- @if () --}}
-
-                {{-- @endif --}}
-                
-
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">

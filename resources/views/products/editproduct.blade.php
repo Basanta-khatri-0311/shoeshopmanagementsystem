@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Edit product</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 @livewire('navigation-menu')
@@ -69,5 +69,7 @@
         </div>
     </form>
 </body>
-
+<footer class="bg-gray-900 text-white py-4 text-center custom-bg">
+    <p>&copy; 2022 FootFashion. All rights reserved.</p>
+</footer>
 </html>

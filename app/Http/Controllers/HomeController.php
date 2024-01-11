@@ -9,7 +9,7 @@ use App\Models\User;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::id()) {
             $usertype = Auth()->user()->role;
@@ -21,8 +21,18 @@ class HomeController extends Controller
                 return view('products.sellerlanding', ['products' => $products]);
             }
             elseif($usertype=='customer'){
-                $allProducts = Product::all();
-                return view('user.userlanding', ['allProducts' => $allProducts]);
+                $search= $request['search'] ?? "";
+
+                if($search != "")
+                {
+                   $allProducts=Product::where('name','Like','%'.$search.'%')->get();
+                }
+                else
+                {
+                    $allProducts = Product::all();
+                }
+               
+                return view('user.userlanding', ['allProducts' => $allProducts,'search' => $search]);
             }
             else{
                 return redirect()->back();

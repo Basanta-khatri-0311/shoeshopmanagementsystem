@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->decimal('price');
             $table->text('description');
-            $table->binary('product_image')->nullable;
+            $table->string('product_image');
             $table->timestamps();
         });
     }

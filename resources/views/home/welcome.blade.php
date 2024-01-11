@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>FootFashion</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,8 +26,8 @@
         }
     </style>
 </head>
-
-<body class="flex flex-col min-h-screen antialiased" style= "background-color: #fceadd">
+{{-- #fceadd --}}
+<body class="flex flex-col min-h-screen antialiased" style= "background-color: #cccccc">
 
     <header class="bg-white shadow-md fixed-top">
         <nav class="container mx-auto py-4">
