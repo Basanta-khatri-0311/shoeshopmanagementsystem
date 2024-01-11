@@ -87,43 +87,37 @@
             /* Change to your preferred price color */
         }
 
-
-        .popup-card {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        .sort-link {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .popup-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 80%;
-            /* Adjust maximum width as needed */
-            max-height: 80%;
-            /* Adjust maximum height as needed */
-            overflow-y: auto;
-            text-align: center;
-            /* Center content */
-
+        .sort-link:hover {
+            background-color: #0066cc;
+            color: #fff;
         }
-        .sort-font{
+
+        .sort-link.active {
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .sort-font {
+            font-weight: bold;
             color: black;
             font-size: 15px;
             margin: 0 10px;
+        }
+
+        .sort-link.active {
+            background-color: #0066cc;
+            color: #fff;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -154,60 +148,68 @@
                         src="https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="Slide 4" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
-
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
-        <div class="col-md-12 mb-3">
-            <span class="font-weight-bold sort-font">Sort By: </span>
-            <a href="{{ route('home', ['sort' => '']) }}" class="sort-font">All</a>
-            <a href="{{ route('home', ['sort' => 'price_lo_hi']) }}" class="sort-font">Price - Low-High</a>
-            <a href="{{ route('home', ['sort' => 'price_hi_lo']) }}" class="sort-font">Price - High-Low</a>
-            <a href="{{ route('home', ['sort' => 'newest']) }}" class="sort-font">Newest</a>
-        </div>
-        
-        <form action="" class="flex justify-end">
-            <div class="flex items-center space-x-2">
-                <input type="search" name="search" id="" class="form-control" placeholder="search product">
-                <button
-                    class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
-                    Search
-                </button>
-                <a href="{{ 'home' }}" class="inline-block">
-                    <button type="button"
-                        class="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400 focus:outline-none focus:shadow-outline-gray active:bg-gray-500">
-                        Reset
-                    </button>
-                </a>
+
+
+        <div class="col-md-12 mb-3 flex items-center">
+            <div class="flex items-center space-x-4">
+                <span class="font-weight-bold sort-font">Sort By: </span>
+                <a class="sort-link" href="{{ route('home', ['sort' => '']) }}" class="sort-link">All</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'price_lo_hi']) }}" class="sort-link">Price -
+                    Low-High</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'price_hi_lo']) }}" class="sort-link">Price -
+                    High-Low</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'newest']) }}" class="sort-link">Newest</a>
             </div>
-        </form>
+
+            <form action="{{ route('home') }}" method="get" class="ml-auto">
+                <div class="flex items-center space-x-2">
+                    <input type="search" name="search" class="form-control px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-96"
+                        placeholder="Search product">
+                    <button type="submit"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
+                        Search
+                    </button>
+                </div>
+            </form>
+            
+            
+        </div>
 
         <!-- Display all products -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
-            <!-- Sample product card -->
-            @foreach ($allProducts as $product)
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
-                    <div class="p-4">
-                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                        <p class="text-gray-700 mb-2">Price: ${{ $product->price }}</p>
-                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
-                        <button onclick="togglePopup('{{ $product->id }}')">Read more</button>
-                        <div id="popup_{{ $product->id }}" class="popup-card">
-                            <div class="popup-content">
-                                {{ $product->description }}
-                                <button onclick="togglePopup('{{ $product->id }}')">Close</button>
+
+        <body class="bg-#" style="background-color: #fceadd; margin: 0;">
+            <div class="container mx-auto">
+                <h1 class="text-3xl font-bold mb-8">Your Products</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    @foreach ($allProducts as $product)
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
+                            <div class="p-4">
+                                <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                                <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                                <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
+                                <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                                <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                                <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                                    {{ $product->description }}</p>
+                            </div>
+                            <div class="aspect-w-8 aspect-h-6">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                                    class="object-cover">
                             </div>
                         </div>
-                    </div>
-                    <div class="aspect-w-8 aspect-h-6">
-                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
-                            class="object-cover">
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+                <div class="mt-8">
+                    {{ $allProducts->links() }}
+                </div>
+            </div>
+            
+        </body>
+       
     </div>
 
     <footer class="bg-gray-900 text-white py-4 text-center mt-6">
@@ -238,26 +240,14 @@
             },
         });
 
-        function togglePopup(productId) {
-            const popup = document.getElementById('popup_' + productId);
-            popup.style.display = (popup.style.display === 'none') ? 'flex' : 'none';
+        function toggleDescription(productId) {
+            var description = document.getElementById('description' + productId);
+            var fullDescription = document.getElementById('full-description' + productId);
+            var buttonText = description.classList.toggle('expanded') ? 'Read Less' : 'Read More';
+            description.textContent = description.classList.contains('expanded') ? fullDescription.textContent : str_limit(
+                fullDescription.textContent, 20);
+            description.nextElementSibling.textContent = buttonText;
         }
-
-        function showPopup(productId) {
-            const popup = document.getElementById('popup_' + productId);
-            popup.style.display = 'flex';
-        }
-
-        function hidePopup(productId) {
-            const popup = document.getElementById('popup_' + productId);
-            popup.style.display = 'none';
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            const popups = document.querySelectorAll('.popup-card');
-            popups.forEach(function(popup) {
-                popup.style.display = 'none';
-            });
-        });
     </script>
 </body>
 

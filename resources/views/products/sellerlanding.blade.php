@@ -22,11 +22,80 @@
         .text-gray-700.hidden {
             display: none;
         }
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #27ae60;
+            /* Change to your preferred price color */
+        }
+        
+        .sort-link {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sort-link:hover {
+            background-color: #0066cc;
+            color: #fff;
+        }
+
+        .sort-link.active {
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .sort-font {
+            font-weight: bold;
+            color: black;
+            font-size: 15px;
+            margin: 0 10px;
+        }
+
+        .sort-link.active {
+            background-color: #0066cc;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 @livewire('navigation-menu')
 <body class="bg-#" style="background-color: #fceadd; margin: 0;">
+
+    <div class="col-md-12 mb-3">
+        <div class="mb-4 flex items-center">
+            <div class="flex items-center space-x-4">
+                <span class="font-weight-bold sort-font">Sort By: </span>
+                <a class="sort-link" href="{{ route('home', ['sort' => '']) }}" class="sort-link">All</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'price_lo_hi']) }}" class="sort-link">Price -
+                    Low-High</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'price_hi_lo']) }}" class="sort-link">Price -
+                    High-Low</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'newest']) }}" class="sort-link">Newest</a>
+            </div>
+    
+            <form action="{{ route('home') }}" method="get" class="ml-auto">
+                <div class="flex items-center space-x-2">
+                    <input type="search" name="search" class="form-control px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-96"
+                        placeholder="Search product">
+                    <button type="submit"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+
+
+
     <div class="container mx-auto">
         <h1 class="text-3xl font-bold mb-8">Your Products</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -35,7 +104,7 @@
                 <div class="p-4">
                     <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
                     <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                    <p class="text-gray-700 mb-2">Price: ${{ $product->price }}</p>
+                    <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
                     <p class="text-gray-700" id="description{{ $product->id }}"></p>
                     <button onclick="toggleDescription({{ $product->id }})">Read More</button>
                     <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
