@@ -62,27 +62,27 @@ class ProductController extends Controller
 
 
     public function update_products(Product $product, Request $request)
-{
-    // ... (other validation and logic)
+    {
+        // ... (other validation and logic)
 
-    $data = $request->validate([
-        'name' => 'required',
-        'qty' => 'required|numeric',
-        'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-        'description' => 'nullable',
-        'product_image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust file types and size as needed
-    ]);
+        $data = $request->validate([
+            'name' => 'required',
+            'qty' => 'required|numeric',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'description' => 'nullable',
+            'product_image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust file types and size as needed
+        ]);
 
-    if ($request->hasFile('product_image')) {
-        $image = $request->file('product_image');
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('postimage'), $imagename);
-        $data['product_image'] = 'postimage/' . $imagename;
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('postimage'), $imagename);
+            $data['product_image'] = 'postimage/' . $imagename;
+        }
+
+        $product->update($data);
+        return redirect(route('product.index'))->with('success', 'Product updated successfully');
     }
-
-    $product->update($data);
-    return redirect(route('product.index'))->with('success', 'Product updated successfully');
-}
 
 
 

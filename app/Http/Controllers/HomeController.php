@@ -20,13 +20,13 @@ class HomeController extends Controller
             elseif ($usertype == 'trader') 
             {
                 $query = Product::where('user_id', Auth::id());
-                // Common block for search functionality
+                // block for search functionality
                 $search = $request->input('search') ?? "";
                 if ($search != "") {
                     $query->where('name', 'like', '%' . $search . '%');
                 }
     
-                // Common block for sorting functionality
+                //block for sorting functionality
                 $sort = $request->input('sort');
                 switch ($sort) {
                     case 'price_lo_hi':
