@@ -61,7 +61,6 @@
 
         .product-image {
             width: 100%;
-            height: 200px;
             /* Adjust height as needed */
             object-fit: cover;
             border-radius: 6px;
@@ -119,6 +118,26 @@
             color: #fff;
             font-weight: bold;
         }
+
+        /* Add this style for image overlay */
+        .aspect-w-8.aspect-h-6 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Adjust the color and opacity as needed */
+            pointer-events: none;
+            /* Allow clicks to pass through the overlay to the image */
+            z-index: 2;
+            /* Ensure the overlay is above the image */
+        }
     </style>
 </head>
 
@@ -167,7 +186,8 @@
 
             <form action="{{ route('home') }}" method="get" class="ml-auto">
                 <div class="flex items-center space-x-2">
-                    <input type="search" name="search" class="form-control px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-96"
+                    <input type="search" name="search"
+                        class="form-control px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-96"
                         placeholder="Search product">
                     <button type="submit"
                         class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
@@ -175,8 +195,8 @@
                     </button>
                 </div>
             </form>
-            
-            
+
+
         </div>
 
         <!-- Display all products -->
@@ -207,9 +227,9 @@
                     {{ $allProducts->links() }}
                 </div>
             </div>
-            
+
         </body>
-       
+
     </div>
 
     <footer class="bg-gray-900 text-white py-4 text-center mt-6">
@@ -247,6 +267,10 @@
             description.textContent = description.classList.contains('expanded') ? fullDescription.textContent : str_limit(
                 fullDescription.textContent, 20);
             description.nextElementSibling.textContent = buttonText;
+        }
+
+        function str_limit(string, limit) {
+            return string.trim().split(/\s+/).slice(0, limit).join(' ') + '...';
         }
     </script>
 </body>

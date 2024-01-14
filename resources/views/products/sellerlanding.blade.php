@@ -67,7 +67,7 @@
 @livewire('navigation-menu')
 <body class="bg-#" style="background-color: #fceadd; margin: 0;">
 
-    <div class="col-md-12 mb-3">
+    <div class="col-md-12 mb-3 m-6">
         <div class="mb-4 flex items-center">
             <div class="flex items-center space-x-4">
                 <span class="font-weight-bold sort-font">Sort By: </span>
@@ -115,6 +115,9 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="mt-4">
+            {{ $products->links() }}
         </div>
     </div>
 </body>

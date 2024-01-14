@@ -42,7 +42,7 @@ class HomeController extends Controller
                         $query->orderBy('created_at', 'desc');
                 }
     
-                $products = $query->get();
+                $products = $query->paginate(10);
     
                 return view('products.sellerlanding', ['products' => $products, 'usertype' => $usertype, 'search' => $search]);
             } elseif ($usertype == 'customer') 
@@ -72,7 +72,7 @@ class HomeController extends Controller
                         $query->orderBy('created_at', 'desc');
                 }
     
-                $allProducts = $query->paginate(6);
+                $allProducts = $query->paginate(10);
     
                 return view('user.userlanding', ['allProducts' => $allProducts, 'search' => $search]);
             } else {

@@ -6,15 +6,19 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class ProductController extends Controller
 {
     /**for showing products in table along with edit and delete buttons */
     public function seller_product_landing()
     {
-        $product = Product::all();
-        return view('products.products', ['product' => $product]);
+        $user = Auth::user();
+        $products = $user->products()->paginate(5); // Adjust the number based on how many products you want to display per page
+        return view('products.products', ['products' => $products]);
     }
+    
     public function seller_product_add()
     {
         return view('products.addproducts');
@@ -83,9 +87,6 @@ class ProductController extends Controller
         $product->update($data);
         return redirect(route('product.index'))->with('success', 'Product updated successfully');
     }
-
-
-
     public function delete_products(Product $product)
     {
         $product->delete();

@@ -29,7 +29,7 @@
                     <th class="border border-gray-500 px-4 py-2">Product Image</th>
                     <th class="border border-gray-500 px-4 py-2">Actions</th>
                 </tr>
-                @foreach ($product as $product)
+                @foreach ($products as $product)
                 <tr>
                     <td class="border border-gray-500 px-4 py-2">{{ $product->id }}</td>
                     <td class="border border-gray-500 px-4 py-2">{{ $product->name }}</td>
@@ -50,6 +50,9 @@
                 </tr>
                 @endforeach
             </table>
+        </div>
+        <div class="mt-4">
+            {{ $products->links() }}
         </div>
     </div>
   
