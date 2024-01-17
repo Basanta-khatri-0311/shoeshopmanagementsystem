@@ -18,13 +18,12 @@ class HomeController extends Controller
                 return view('admin.adminlanding');
             } elseif ($usertype == 'trader') {
                 $query = Product::where('user_id', Auth::id());
-                // block for search functionality
+               
                 $search = $request->input('search') ?? "";
                 if ($search != "") {
                     $query->where('name', 'like', '%' . $search . '%');
                 }
 
-                //block for sorting functionality
                 $sort = $request->input('sort');
                 switch ($sort) {
                     case 'price_lo_hi':
@@ -52,13 +51,15 @@ class HomeController extends Controller
             } elseif ($usertype == 'customer') {
                 $query = Product::query();
 
-                // Search functionality
+                $query->where('product_status', '=', 'active');
+
                 $search = $request->input('search') ?? "";
+
                 if ($search != "") {
                     $query->where('name', 'like', '%' . $search . '%');
                 }
 
-                // Sorting functionality
+                
                 $sort = $request->input('sort');
                 switch ($sort) {
                     case 'price_lo_hi':
@@ -77,7 +78,7 @@ class HomeController extends Controller
                         $query->latest();
                         break;
                     default:
-                        // Default sorting if no valid option is provided
+                        
                         $query->orderBy('created_at', 'desc');
                 }
 

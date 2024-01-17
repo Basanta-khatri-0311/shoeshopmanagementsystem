@@ -17,36 +17,31 @@
             padding: 0;
             box-sizing: border-box;
             background-color: #f5f5f5;
-            /* Change to your preferred background color */
             color: #333;
-            /* Change text color for better contrast */
         }
 
-        /* Define your custom styles */
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Slider Styles */
         .swiper-container {
             width: 100%;
             margin-bottom: 0;
-            /* Adjust the margin-bottom property */
             padding-top: 20px;
         }
 
         .swiper-slide-image {
             width: 100%;
             height: 500px;
-            /* Adjust the height as needed */
             object-fit: cover;
             border-radius: 6px;
             margin-bottom: 15px;
         }
 
-        /* Product Card Styles */
+        
         .product-card {
             background-color: #dfdada;
             border-radius: 8px;
@@ -63,10 +58,8 @@
 
         .product-image {
             width: 100%;
-            /* Adjust height as needed */
             object-fit: cover;
-            /* border-radius: 6px;
-            margin-bottom: 15px; */
+           
         }
 
         .product-title {
@@ -85,7 +78,7 @@
             font-size: 16px;
             font-weight: bold;
             color: #27ae60;
-            /* Change to your preferred price color */
+           
         }
 
         .sort-link {
@@ -134,19 +127,14 @@
             width: 100%;
             height: 100%;
             background-color: rgba(255, 255, 255, 0.7);
-            /* Adjust the color and opacity as needed */
             pointer-events: none;
-            /* Allow clicks to pass through the overlay to the image */
             z-index: 2;
-            /* Ensure the overlay is above the image */
         }
 
         .product-image-container {
             width: 100%;
             height: 300px;
-            /* Set a fixed height for consistency */
             overflow: hidden;
-            /* Ensure consistent cropping for images */
         }
     </style>
 </head>
@@ -156,7 +144,6 @@
     <div class="container mt-8">
         <div class="swiper-container" style="padding-top: 20px">
             <div class="swiper-wrapper">
-                <!-- Swiper slides -->
                 <div class="swiper-slide">
                     <img class="swiper-slide-image"
                         src="https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -178,7 +165,6 @@
                         alt="Slide 4" class="w-full h-96 object-cover rounded-md shadow-lg">
                 </div>
             </div>
-            <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
 
@@ -214,7 +200,6 @@
 
         </div>
 
-        <!-- Display all products -->
 
         <body class="bg-#" style="background-color: #fceadd; margin: 0;">
             <div class="container mx-auto">
@@ -241,9 +226,6 @@
                                         </button>
                                     </form>
 
-                                    <!-- Add to Cart Button (Placeholder) -->
-
-                                    <!-- Add to Favorites Button (Placeholder) -->
                                     <button
                                         class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition-all duration-300 ease-in-out">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -283,7 +265,6 @@
         </div>
     </footer>
 
-    <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {

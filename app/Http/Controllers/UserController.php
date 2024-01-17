@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        // Fetch orders for the currently logged-in user
+        
         $orders = Order::with('product')
             ->where('user_id', $user->id)
             ->get();

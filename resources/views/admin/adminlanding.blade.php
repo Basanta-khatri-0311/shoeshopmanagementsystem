@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color:#fceadd; /* Set your preferred background color */
+            background-color:#fceadd; 
         }
 
         .container {
@@ -25,7 +25,7 @@
 
         h1 {
             font-size: 2rem;
-            color: #4a5568; /* Set your preferred text color */
+            color: #4a5568; 
             text-align: center;
         }
     </style>

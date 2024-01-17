@@ -18,7 +18,7 @@
             transform: translateY(-5px);
         }
 
-        /* Initially hide expanded description */
+      
         .text-gray-700.hidden {
             display: none;
         }
@@ -27,7 +27,6 @@
             font-size: 16px;
             font-weight: bold;
             color: #27ae60;
-            /* Change to your preferred price color */
         }
 
         .sort-link {
@@ -102,17 +101,14 @@
     </div>
 
 
-
-
-
     <div class="container mx-auto">
-
+        <h1 class="text-3xl font-bold mb-8">Your Products</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {{-- @isset($products) --}}
+            
                 @if ($products->isEmpty())
                     <h1>You have not added any products yet.</h1>
                 @else
-                    <h1 class="text-3xl font-bold mb-8">Your Products</h1>
+                   
                     @foreach ($products as $product)
                         <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
                             <div class="p-4">
@@ -134,7 +130,7 @@
                         {{ $products->links() }}
                     </div>
                 @endif
-            {{-- @endisset --}}
+           
         </div>
     </div>
 </body>

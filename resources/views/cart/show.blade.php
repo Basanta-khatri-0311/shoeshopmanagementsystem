@@ -6,7 +6,7 @@
 
 <body style="background-color:#fceadd">
     <div class="container mx-auto my-8 mt-20px flex">
-        <!-- Cart Table -->
+        
         <div class="flex-1">
             <h1 class="text-3xl font-semibold mb-6">Your Cart</h1>
 
@@ -32,7 +32,7 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Image
                             </th>
-                            <!-- Add other table headers as needed -->
+                           
                             <th scope="col" class="relative px-6 py-3"></th>
                         </tr>
                     </thead>
@@ -88,12 +88,12 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <!-- Add logic to display the first image of the product -->
+                                       
                                         <img class="h-16 w-16 rounded-full object-cover"
                                             src="{{ $cartItem->product->product_image }}"
                                             alt="{{ $cartItem->product->name }}">
                                     </td>
-                                    <!-- Add other table cells with product details as needed -->
+                                  
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form action="{{ route('cart.remove', $cartItem->product->id) }}"
                                             method="POST">
@@ -116,7 +116,7 @@
         <div class="flex">
 
 
-            <!-- Receipt Table -->
+           
             <div class="flex-1 ml-8 mt-20px">
                 <h2 class="text-2xl font-semibold mb-4">Receipt</h2>
 
@@ -136,7 +136,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Loop through cart items to display receipt -->
+                       
                         @foreach ($cartItems as $cartItem)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -171,7 +171,7 @@
                         </div>
                     </div>
 
-                    <!-- Checkout Button -->
+                   
                     <div class="text-right mt-4">
                         <form action="{{ route('checkout') }}" method="POST">
                             @csrf
