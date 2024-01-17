@@ -66,7 +66,7 @@ Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout')
 /**all the routes for products crud and displaying pages */
 //Route::get('/allproducts', [ProductController::class, 'all_product_landing'])->name('allproduct.index');
 Route::get('/product', [ProductController::class, 'seller_product_landing'])->middleware(['seller', 'auth'])->name('product.index');
-Route::get('/orderlist', [ProductController::class, 'orders'])->middleware(['seller', 'auth'])->name('product.order');
+Route::get('/orderlist', [ProductController::class, 'orderList'])->middleware(['seller', 'auth'])->name('product.order');
 
 
 Route::get('/product/addproduct', [ProductController::class, 'seller_product_add'])->middleware(['seller', 'auth'])->name('product.add');

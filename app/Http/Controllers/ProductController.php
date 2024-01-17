@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
@@ -18,7 +19,7 @@ class ProductController extends Controller
         $products = $user->products()->paginate(5); // Adjust the number based on how many products you want to display per page
         return view('products.products', ['products' => $products]);
     }
-    
+
     public function seller_product_add()
     {
         return view('products.addproducts');
@@ -93,7 +94,16 @@ class ProductController extends Controller
         return redirect(route('product.index'))->with('success', 'Product deleted successfuly');
     }
 
-    // public function orderlist(){
-    //     return view('products.order');
-    // }
+    public function orderList()
+    {
+        $user = auth()->user();
+
+        // Retrieve user's products
+        $userProducts = $user->products;
+
+        // Retrieve orders related to the user's products
+        $orders = Order::whereIn('product_id', $userProducts->pluck('id'))->get();
+
+        return view('products.orders', compact('orders'));
+    }
 }
