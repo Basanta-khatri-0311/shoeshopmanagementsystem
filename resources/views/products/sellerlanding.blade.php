@@ -22,13 +22,14 @@
         .text-gray-700.hidden {
             display: none;
         }
+
         .product-price {
             font-size: 16px;
             font-weight: bold;
             color: #27ae60;
             /* Change to your preferred price color */
         }
-        
+
         .sort-link {
             text-decoration: none;
             color: #333;
@@ -65,6 +66,7 @@
 </head>
 
 @livewire('navigation-menu')
+
 <body class="bg-#" style="background-color: #fceadd; margin: 0;">
 
     <div class="col-md-12 mb-3 m-6">
@@ -76,22 +78,28 @@
                     Low-High</a>
                 <a class="sort-link" href="{{ route('home', ['sort' => 'price_hi_lo']) }}" class="sort-link">Price -
                     High-Low</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'quantity_lo_hi']) }}" class="sort-link">Quantity
+                    - Low-High</a>
+                <a class="sort-link" href="{{ route('home', ['sort' => 'quantity_hi_lo']) }}" class="sort-link">Quantity
+                    - High-Low</a>
                 <a class="sort-link" href="{{ route('home', ['sort' => 'newest']) }}" class="sort-link">Newest</a>
+
             </div>
-    
+
             <form action="{{ route('home') }}" method="get" class="ml-auto">
                 <div class="flex items-center space-x-2">
-                    <input type="search" name="search" class="form-control px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-96"
-                        placeholder="Search product">
+                    <input type="search" name="search" class="form-control px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-60"
+                        placeholder="Search product" aria-label="Search products">
+                
                     <button type="submit"
-                        class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
+                        class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
                         Search
                     </button>
-                </div>
+                </div>                
             </form>
         </div>
     </div>
-    
+
 
 
 
@@ -100,20 +108,21 @@
         <h1 class="text-3xl font-bold mb-8">Your Products</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @foreach ($products as $product)
-            <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
-                <div class="p-4">
-                    <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                    <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                    <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
-                    <p class="text-gray-700" id="description{{ $product->id }}"></p>
-                    <button onclick="toggleDescription({{ $product->id }})">Read More</button>
-                    <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
-                        {{ $product->description }}</p>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                        <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
+                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                        <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                        <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                            {{ $product->description }}</p>
+                    </div>
+                    <div class="aspect-w-8 aspect-h-6">
+                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                            class="object-cover">
+                    </div>
                 </div>
-                <div class="aspect-w-8 aspect-h-6">
-                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image" class="object-cover">
-                </div>
-            </div>
             @endforeach
         </div>
         <div class="mt-4">

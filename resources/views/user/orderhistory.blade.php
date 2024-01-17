@@ -27,9 +27,21 @@
                     <th class="border border-gray-500 px-4 py-2">Product Image</th>
                     <th class="border border-gray-500 px-4 py-2">Actions</th>
                 </tr>
-                {{-- @foreach ($orders as $order) --}}
-                    <td class="border border-gray-500 px-4 py-2"></td>
-                {{-- @endforeach --}}
+                @foreach ($orders as $order)
+                    <tr>
+                        <td class="border border-gray-500 px-4 py-2">{{ $order->id }}</td>
+                        <td class="border border-gray-500 px-4 py-2">{{ $order->product->name }}</td>
+                        <td class="border border-gray-500 px-4 py-2">{{ $order->quantity }}</td>
+                        <td class="border border-gray-500 px-4 py-2">{{ $order->total_price }}</td>
+                        <td class="border border-gray-500 px-4 py-2">{{ $order->product->description }}</td>
+                        <td class="border border-gray-500 px-4 py-2">
+                            <img src="{{ $order->product->product_image }}" alt="{{ $order->product->name }}" class="w-12 h-12">
+                        </td>
+                        <td class="border border-gray-500 px-4 py-2">
+                            {{-- Add actions as needed --}}
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>

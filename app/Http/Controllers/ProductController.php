@@ -92,4 +92,8 @@ class ProductController extends Controller
         $product->delete();
         return redirect(route('product.index'))->with('success', 'Product deleted successfuly');
     }
+
+    // public function orderlist(){
+    //     return view('products.order');
+    // }
 }

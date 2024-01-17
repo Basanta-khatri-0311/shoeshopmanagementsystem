@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::get('/contactus', [HomeController::class, 'contact'])->name('contact.inde
 
 /**Route for home page */
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+//**Users order history page */
+Route::get('/orders', [UserController::class, 'userorders'])->name('user.orderhistory');
+Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
 
 
 
@@ -55,18 +59,21 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 /**all the routes for products crud and displaying pages */
 //Route::get('/allproducts', [ProductController::class, 'all_product_landing'])->name('allproduct.index');
 Route::get('/product', [ProductController::class, 'seller_product_landing'])->middleware(['seller', 'auth'])->name('product.index');
+Route::get('/orderlist', [ProductController::class, 'orders'])->middleware(['seller', 'auth'])->name('product.order');
 
 
 Route::get('/product/addproduct', [ProductController::class, 'seller_product_add'])->middleware(['seller', 'auth'])->name('product.add');
+
 Route::post('/product', [ProductController::class, 'add_product'])->middleware(['seller', 'auth'])->name('product.store');
 
 Route::get('/product/{product}/edit', [ProductController::class, 'edit_products'])->middleware(['seller', 'auth'])->name('product.edit');
+
 Route::put('/product/{product}/update', [ProductController::class, 'update_products'])->middleware(['seller', 'auth'])->name('product.update');
+
 
 Route::delete('/product/{product}/destroy', [ProductController::class, 'delete_products'])->middleware(['seller', 'auth'])->name('product.delete');
 
-Route::get('/orders', [ProductController::class, 'orders'])->middleware(['seller', 'auth'])->name('product.order');
 
 
-// routes for user
-Route::get('/orders', [UserController::class, 'userorders'])->name('user.orderhistory');
+
+

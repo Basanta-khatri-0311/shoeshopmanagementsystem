@@ -9,8 +9,6 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewire('navigation-menu')
 <body>
-  {{-- @foreach ($order as $order )
-
-  @endforeach --}}
+  <h1>Order List</h1>
 </body>
 </html>

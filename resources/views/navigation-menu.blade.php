@@ -16,16 +16,22 @@
                         {{ __('Order History') }}
                     </x-nav-link>
                     @endif
+
+                    @if (Auth::user()->role==='trader')
+                    <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
+                        {{ __('Order List') }}
+                    </x-nav-link>
+                    @endif
                    
 
 
                     @if (in_array(auth()->user()->role, ['trader', 'admin']))
-                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                    {{-- <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                         {{ __('Manage Products') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
 
                     {{-- <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
-                        {{ __('Orders') }}
+                        {{ __('Manage Users') }}
                     </x-nav-link> --}}
                     @endif
                     <x-dropdown align="left-start" width="48">
@@ -36,7 +42,7 @@
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-xl leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-900 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
