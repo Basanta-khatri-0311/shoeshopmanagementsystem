@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-HJ3N9U+Ll5oT82s4nfIpsq4F4dN+UEV2yLtlQc3UP7C1Jt2FZ8VbAn2GmDDqR2pT" crossorigin="anonymous">
+
     <style>
         body {
             font-family: Arial, sans-serif;

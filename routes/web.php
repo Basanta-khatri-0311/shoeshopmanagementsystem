@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,12 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 //**Users order history page */
 Route::get('/orders', [UserController::class, 'userorders'])->name('user.orderhistory');
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'show_cart_product'])->name('cart.show');
+Route::patch('/cart/update/{productId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+
+
 
 
 
