@@ -179,8 +179,10 @@
                     High-Low</a>
                 <a class="sort-link" href="{{ route('home', ['sort' => 'quantity_lo_hi']) }}" class="sort-link">Quantity
                     - Low-High</a>
+
                 <a class="sort-link" href="{{ route('home', ['sort' => 'quantity_hi_lo']) }}" class="sort-link">Quantity
-                    - High-Low</ <a class="sort-link" href="{{ route('home', ['sort' => 'newest']) }}"
+                    - High-Low</a>
+                    <a class="sort-link" href="{{ route('home', ['sort' => 'newest']) }}"
                         class="sort-link">Newest</a>
             </div>
 
