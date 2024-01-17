@@ -88,14 +88,15 @@
 
             <form action="{{ route('home') }}" method="get" class="ml-auto">
                 <div class="flex items-center space-x-2">
-                    <input type="search" name="search" class="form-control px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-60"
+                    <input type="search" name="search"
+                        class="form-control px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-all duration-300 ease-in-out w-60"
                         placeholder="Search product" aria-label="Search products">
-                
+
                     <button type="submit"
                         class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition-all duration-300 ease-in-out">
                         Search
                     </button>
-                </div>                
+                </div>
             </form>
         </div>
     </div>
@@ -105,28 +106,35 @@
 
 
     <div class="container mx-auto">
-        <h1 class="text-3xl font-bold mb-8">Your Products</h1>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach ($products as $product)
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
-                    <div class="p-4">
-                        <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
-                        <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
-                        <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
-                        <p class="text-gray-700" id="description{{ $product->id }}"></p>
-                        <button onclick="toggleDescription({{ $product->id }})">Read More</button>
-                        <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
-                            {{ $product->description }}</p>
+            {{-- @isset($products) --}}
+                @if ($products->isEmpty())
+                    <h1>You have not added any products yet.</h1>
+                @else
+                    <h1 class="text-3xl font-bold mb-8">Your Products</h1>
+                    @foreach ($products as $product)
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg product-card">
+                            <div class="p-4">
+                                <h2 class="text-xl font-bold mb-2">{{ $product->name }}</h2>
+                                <p class="text-gray-700 mb-2">Quantity: {{ $product->qty }}</p>
+                                <p class="text-gray-700 mb-2 product-price">Price: ${{ $product->price }}</p>
+                                <p class="text-gray-700" id="description{{ $product->id }}"></p>
+                                <button onclick="toggleDescription({{ $product->id }})">Read More</button>
+                                <p class="text-gray-700 hidden" id="full-description{{ $product->id }}">
+                                    {{ $product->description }}</p>
+                            </div>
+                            <div class="aspect-w-8 aspect-h-6">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
+                                    class="object-cover">
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="mt-4">
+                        {{ $products->links() }}
                     </div>
-                    <div class="aspect-w-8 aspect-h-6">
-                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }} Image"
-                            class="object-cover">
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="mt-4">
-            {{ $products->links() }}
+                @endif
+            {{-- @endisset --}}
         </div>
     </div>
 </body>

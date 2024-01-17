@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->text('description');
             $table->string('product_image');
+            $table->string('product_status')->default('active');
             $table->timestamps();
         });
     }

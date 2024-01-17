@@ -28,19 +28,18 @@
                     <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
                         {{ __('Order List') }}
                     </x-nav-link>
-                    @endif
-                   
-
-
-                    @if (in_array(auth()->user()->role, ['trader', 'admin']))
-                    {{-- <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                    
+                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                         {{ __('Manage Products') }}
-                    </x-nav-link> --}}
-
-                    {{-- <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
-                        {{ __('Manage Users') }}
-                    </x-nav-link> --}}
+                    </x-nav-link>
                     @endif
+                    @if (Auth::user()->role==='admin')
+                    <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
+                        {{ __('Manage Users') }}
+                    </x-nav-link>
+                    @endif
+
+
                     <x-dropdown align="left-start" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

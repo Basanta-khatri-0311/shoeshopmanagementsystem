@@ -13,7 +13,7 @@
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 20px;
+           
         }
 
         h1 {
@@ -26,7 +26,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -47,12 +48,11 @@
 </head>
 
 <body style="background-color: #fceadd">
-    <h1>Seller Order List</h1>
-
     @isset($orders)
-        @if($orders->isEmpty())
+        @if ($orders->isEmpty())
             <p>No orders for your products yet.</p>
         @else
+        
             <table>
                 <thead>
                     <tr>
@@ -63,7 +63,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($orders as $order)
+                    @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->product->name }}</td>
