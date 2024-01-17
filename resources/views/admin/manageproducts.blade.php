@@ -11,11 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class=" min-h-screen p-8" style="background-color: #fceadd">
+<body class=" min-h-screen " style="background-color: #fceadd">
 
     <h1 class="text-3xl font-bold mb-6">Product Management</h1>
 
-    <table class="min-w-full border border-gray-300 rounded" style="background-color: #dfdada ">
+    <table class="min-w-full  border border-gray-300 rounded" style="background-color: #dfdada ">
         <thead>
             <tr>
                 <th class="py-2 px-4 border-b">ID</th>

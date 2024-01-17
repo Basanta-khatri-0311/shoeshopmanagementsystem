@@ -12,12 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class=" min-h-screen p-8" style="background-color: #fceadd">
+<body class=" min-h-screen" style="background-color: #fceadd">
 
-    <div class="w-full max-w-screen-lg">
         <h1 class="text-3xl font-bold mb-6 text-center">User Management</h1>
 
-        <table class="min-w-full  border border-gray-300 rounded" style="background-color: #dfdada">
+        <table class="min-w-full border border-gray-300 rounded" style="background-color: #dfdada">
             <thead>
                 <tr>
                     <th class="py-2 px-4 border-b">ID</th>
@@ -31,7 +30,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                    <tr>
+                    <tr >
                         <td class="py-2 px-4 border-b">{{ $user->id }}</td>
                         <td class="py-2 px-4 border-b">{{ $user->name }}</td>
                         <td class="py-2 px-4 border-b">{{ $user->email }}</td>
@@ -56,8 +55,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-
 </body>
 
 </html>
