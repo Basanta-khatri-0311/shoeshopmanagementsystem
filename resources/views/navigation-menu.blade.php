@@ -34,8 +34,11 @@
                     </x-nav-link>
                     @endif
                     @if (Auth::user()->role==='admin')
-                    <x-nav-link href="{{ route('product.order') }}" :active="request()->routeIs('product.order')">
+                    <x-nav-link href="{{ route('user.mgm') }}" :active="request()->routeIs('user.mgm')">
                         {{ __('Manage Users') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('product.mgm') }}" :active="request()->routeIs('product.mgm')">
+                        {{ __('Manage Products') }}
                     </x-nav-link>
                     @endif
 

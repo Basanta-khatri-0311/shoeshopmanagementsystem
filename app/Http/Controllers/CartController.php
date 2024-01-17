@@ -75,8 +75,4 @@ class CartController extends Controller
         // Redirect back to the cart page
         return redirect()->route('cart.show');
     }
-
-
-
-
 }

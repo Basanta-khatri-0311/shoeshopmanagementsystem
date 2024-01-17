@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ use App\Http\Controllers\OrderController;
 Route::get('/', function () {
   return view('home.welcome');
 });
+
 Route::get('/services', [HomeController::class, 'services'])->name('services.index');
 Route::get('/aboutus', [HomeController::class, 'aboutus'])->name('aboutus.index');
 Route::get('/contactus', [HomeController::class, 'contact'])->name('contact.index');
@@ -47,6 +49,9 @@ Route::get('/contactus', [HomeController::class, 'contact'])->name('contact.inde
 
 /**Route for home page */
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+
+
+
 //**Users order history page */
 Route::get('/orders', [UserController::class, 'userorders'])->name('user.orderhistory');
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
@@ -84,3 +89,13 @@ Route::delete('/product/{product}/destroy', [ProductController::class, 'delete_p
 
 
 
+Route::middleware(['auth', 'admin'])->group(function () {
+  Route::get('/usermanagement', [AdminController::class, 'usermgm'])->name('user.mgm');
+  Route::get('/productmanagement', [AdminController::class, 'productmgm'])->name('product.mgm');
+
+    Route::get('/usermanagement/approve/{user}', [AdminController::class, 'approveUser'])->name('admin.approve.user');
+    Route::get('/usermanagement/decline/{user}', [AdminController::class, 'declineUser'])->name('admin.decline.user');
+
+    Route::get('/productmanagement/approve/{product}', [AdminController::class, 'approveProduct'])->name('admin.approve.product');
+    Route::get('/productmanagement/decline/{product}', [AdminController::class, 'declineProduct'])->name('admin.decline.product');
+});

@@ -9,6 +9,6 @@
   <title>Admin</title>
 </head>
 <body>
-  
+  <h1 style="font-size: 46; align-content:center">You are loggedin as admin</h1>
 </body>
 </html>
