@@ -1,3 +1,6 @@
+<html>
+
+
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewire('navigation-menu')
 
@@ -186,3 +189,4 @@
         </div>
     </div>
 </body>
+</html>
