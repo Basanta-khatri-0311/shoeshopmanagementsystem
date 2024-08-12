@@ -73,7 +73,7 @@
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-4 text-center">
+    <footer class="bg-gray-900 text-white py-4 text-center ">
         <p>&copy; 2022 Your Shoe Management System. All rights reserved.</p>
     </footer>
 

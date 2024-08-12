@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('product_image');
             $table->string('product_status')->default('active');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

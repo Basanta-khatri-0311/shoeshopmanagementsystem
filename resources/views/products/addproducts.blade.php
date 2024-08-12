@@ -63,7 +63,7 @@
         </div>
     </form>
 </body>
-<footer class="bg-gray-900 text-white py-4 text-center custom-bg">
+<footer class="bg-gray-900 text-white py-4 text-center custom-bg ">
     <p>&copy; 2022 FootFashion. All rights reserved.</p>
 </footer>
 </html>
