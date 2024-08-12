@@ -169,7 +169,7 @@
         </div>
 
 
-        <div class="col-md-12 mb-3 flex items-center">
+        <div class="col-md-12 mb-3 flex items-center justify-content-between full-width">
             <div class="flex items-center ">
                 <span class="font-weight-bold sort-font">Sort By: </span>
                 <a class="sort-link" href="{{ route('home', ['sort' => '']) }}" class="sort-link">All</a>
